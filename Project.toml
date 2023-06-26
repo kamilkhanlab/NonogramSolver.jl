@@ -1,0 +1,13 @@
+name = "NonogramSolver"
+uuid = "857b2cee-98b7-4550-8c8c-20e4ad668222"
+authors = ["Kamil A. Khan"]
+version = "1.0.0-DEV"
+
+[compat]
+julia = "1.7"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]
