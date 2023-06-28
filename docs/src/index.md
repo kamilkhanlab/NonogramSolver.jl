@@ -2,12 +2,7 @@
 CurrentModule = NonogramSolver
 ```
 
-# NonogramSolver
-
-Documentation for [NonogramSolver](https://github.com/kamilkhanlab/NonogramSolver.jl).
-
-```@index
-```
+# NonogramSolver.jl
 
 ## Overview
 
@@ -16,7 +11,7 @@ puzzles](https://en.wikipedia.org/wiki/Nonogram) (a.k.a. Picross,
 paint-by-number, and crucipixel), and for solving these puzzles using
 integer linear programming (ILP) via
 [JuMP](https://jump.dev/JuMP.jl/stable/). A [new effective ILP
-formulation](https://doi.org/10.1109/TG.2020.3036687) is
+formulation](https://doi.org/10.1109/TG.2020.3036687) by Khan is
 employed. Monochrome and multicolored puzzles are both supported.
 
 If you make use of this implementation in your own work, please cite
