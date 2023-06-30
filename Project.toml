@@ -1,7 +1,7 @@
 name = "NonogramSolver"
 uuid = "108db2ec-6058-46d0-81ab-928f1904c069"
 authors = ["Kamil A. Khan"]
-version = "1.0.0-DEV"
+version = "1.0.0"
 
 [deps]
 GLPK = "60bf3e95-4087-53dc-ae20-288a0d20c6a6"

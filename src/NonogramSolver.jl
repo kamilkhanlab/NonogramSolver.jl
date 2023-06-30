@@ -25,11 +25,17 @@ Holds one puzzle instance.
 
 # Non-default constructors
 
+The following constructors for `Puzzle` are recommended over the default constructor.
+
+## For monochrome puzzles
+
     Puzzle(sR::Vector{Vector{Int}}, sC::Vector{Vector{Int}})
 
 Hold a monochrome puzzle, with `sR` containing row clues and `sC` containing column clues.
 
 This constructor sets the puzzle's single color (traditionally "black") to `1`, lack of color (traditionally "white") to `0`, and `Puzzle.palette` to `1:1`.
+
+## For multicolored puzzles
 
     Puzzle(sR, cR, sC, cC)
 
@@ -116,11 +122,19 @@ struct PuzzleSolution
 end
 
 """
-    read_puzzle_from_cwc("filename.cwc") -> Puzzle
+    read_puzzle_from_cwc(cwcFileName::String) -> Puzzle
 
 Import a puzzle that was exported from [Web Paint-by-Number](https://webpbn.com/export.cgi) as a .CWC file.
+
+# Example
+
+With `puzzle.cwc` exported from Web Paint-by-Number and placed in the working directory, we may then build:
+
+```julia
+puzzle = read_puzzle_from_cwc("puzzle.cwc")
+```
 """
-function read_puzzle_from_cwc(cwcFilename::String)
+function read_puzzle_from_cwc(cwcFileName::String)
     # initialize outside scope of "open"
     palette = 1:1
     
@@ -130,7 +144,7 @@ function read_puzzle_from_cwc(cwcFilename::String)
     cC = similar(cR)
 
     # read CWC file and store it in the above matrices
-    open(cwcFilename, "r") do io
+    open(cwcFileName, "r") do io
         nRows = parse(Int, readline(io))
         nColumns = parse(Int, readline(io))
         nColors = parse(Int, readline(io))
@@ -152,6 +166,8 @@ end
     eval_aux_quantities(p::Puzzle) -> AuxPuzzleQuantities
 
 Construct intermediate quantities that describe a [`Puzzle`](@ref) `p`, to aid [`solve_puzzle`](@ref).
+
+See the documentation for [`AuxPuzzleQuantities`](@ref) for a list of these quantities.
 """
 function eval_aux_quantities(puzzle::Puzzle)
     bR = length.(puzzle.sR) # number of blocks in each row

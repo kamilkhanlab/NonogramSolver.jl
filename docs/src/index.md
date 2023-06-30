@@ -6,7 +6,7 @@ CurrentModule = NonogramSolver
 
 ## Overview
 
-This is a Julia module for formulating [nonogram
+This package provides a Julia module for formulating [nonogram
 puzzles](https://en.wikipedia.org/wiki/Nonogram) (a.k.a. Picross,
 paint-by-number, and crucipixel), and for solving these puzzles using
 integer linear programming (ILP) via
@@ -89,23 +89,22 @@ at least one white cell. Intuitively, multicolored puzzles are easier
 than analogous monochrome puzzles, because there are fewer "red
 herring" candidate solutions to eliminate.
 
+## Installation
+
+This package can be installed with the following command in Julia's REPL:
+```julia
+import Pkg; Pkg.add("NonogramSolver")
+```
+
 ## Examples
 
-Suppose we wish to solve the above puzzles in Julia. Begin by loading the
-module. With `NonogramSolver.jl` in your working directory, enter the
+Suppose we wish to solve the above puzzles in Julia, and the package
+is installed. Enter the
 following commands in Julia's REPL, typing `Enter` at the end
 of each command:
 
 ```julia
-include("NonogramSolver.jl")
-using .NonogramSolver
-```
-
-```@meta
-DocTestSetup = quote
-    include("../src/NonogramSolver.jl")
-	using .NonogramSolver
-end
+using NonogramSolver
 ```
 
 Let's first tackle the simpler puzzle above. Store the row clues as a
@@ -123,16 +122,17 @@ Julia as `Int[]`.)
 Then, set up a corresponding [`Puzzle`](@ref) object:
 
 ```julia
-simplePuzzle = NonogramSolver.Puzzle(rowClues, colClues)
+simplePuzzle = Puzzle(rowClues, colClues)
 ```
 
-...and solve it with [`solve_puzzle`](@ref). This sets up an [ILP
+...and solve it with [`solve_puzzle`](@ref). This sets up an [integer
+linear programming (ILP)
 formulation by Khan](https://doi.org/10.1109/TG.2020.3036687), and
 then solves it using the freely available ILP solver
 GLPK in JuMP by default:
 
 ```julia
-simpleSolution = NonogramSolver.solve_puzzle(simplePuzzle; verbosity=0)
+simpleSolution = solve_puzzle(simplePuzzle; verbosity=0)
 ```
 (If you have access to other ILP solvers such as GUROBI or CPLEX, then
 you may direct [`solve_puzzle`](@ref) to use these instead.) In Julia's REPL, the
@@ -191,9 +191,9 @@ julia> colClues = [[1], [1], [1,3], [1], [1,3], [1], [1,3], [1], [3]]
  [1]
  [3]
 
-julia> trickyPuzzle = NonogramSolver.Puzzle(rowClues, colClues);
+julia> trickyPuzzle = Puzzle(rowClues, colClues);
 
-julia> NonogramSolver.solve_puzzle(trickyPuzzle; verbosity=0)
+julia> solve_puzzle(trickyPuzzle; verbosity=0)
 
 ⬜⬜⬜⬜⬜⬜⬛⬛⬛
 ⬜⬜⬜⬜⬜⬜⬜⬜⬛
@@ -227,7 +227,7 @@ satisfy the row clues and column clues simultaneously, then no
 solution exists, and a completely white/unfilled grid will be produced to
 indicate this.
 
-### Importing from Web Paint-by-Number
+## Importing from Web Paint-by-Number
 
 Puzzles may also be imported from [Web
 Paint-by-Number](https://webpbn.com) as follows:
@@ -237,7 +237,7 @@ Paint-by-Number](https://webpbn.com) as follows:
    button at the bottom.
 2. Save the exported text in your working directory, as
    e.g. `puzzle.cwc`.
-3. In Julia, after importing this module and `using .NonogramSolver`, import the
+3. In Julia, after importing this module and `using NonogramSolver`, import the
    CWC file as a [`Puzzle`](@ref) object using [`read_puzzle_from_cwc`](@ref):
    ```julia
    puzzle = read_puzzle_from_cwc("puzzle.cwc")
