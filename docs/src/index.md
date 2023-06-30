@@ -167,6 +167,8 @@ With `NonogramSolver.jl` already included, we may repeat the above
 procedure for the second, trickier example above. This looks as
 follows in the REPL:
 ```jldoctest
+julia> using NonogramSolver
+
 julia> rowClues = [[3], [1], [3,1], [1], [3,1], [1], [3,1], [1], [1]]
 9-element Vector{Vector{Int64}}:
  [3]
