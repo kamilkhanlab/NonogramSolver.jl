@@ -57,8 +57,7 @@ solvable by hand, this puzzle in general is NP-complete.
 
 ## Installation
 
-This package may be installed via Julia's standard package
-installation procedure. In the Julia REPL, enter the command:
+To install this package, enter the following command in Julia's REPL:
 
 ```julia
 import Pkg; Pkg.add("NonogramSolver")
@@ -99,20 +98,19 @@ follows in Julia. For more details, refer to the API documentation.
    
    You can customize the
    choice of solver and its options. Without `verbosity=0`, JuMP's
-   solution summary is printed.
+   solution summary would be printed as well.
 
 5. If the previous step was carried out in Julia's REPL, then the
-   solution has already been displayed. Otherwise, retrieve the
+   solution has already been displayed using colored-square emojis. Otherwise, retrieve the
    solution in one of three ways:
    
    - displayed to the REPL/terminal, via: 
 
 	 ```julia
-	 @show puzzleSolution`
+	 @show puzzleSolution
 	 ```
 		
-   - as a `String` containing the solution as a grid of colored-square
-     emojis, with:
+   - as a `String` containing the printed solution, with:
 	 
 	 ```julia
 	 stringOutput = repr(puzzleSolution)
