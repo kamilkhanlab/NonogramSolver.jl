@@ -46,11 +46,11 @@ are in the corresponding contiguous block. Columns' clues are analogous.
 
 For example, the following puzzle instance:
 
-![Puzzle prompt](docs/src/examplePrompt.png)
+![Puzzle prompt](docs/src/examplePrompt.jpg)
 
 has the unique solution:
 
-![Puzzle solution](docs/src/exampleSolution.png)
+![Puzzle solution](docs/src/exampleSolution.jpg)
 
 While "real-world" instances are often deliberately designed to be
 solvable by hand, this puzzle in general is NP-complete.
