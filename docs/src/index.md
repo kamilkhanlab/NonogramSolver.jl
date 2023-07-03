@@ -89,9 +89,26 @@ at least one white cell. Intuitively, multicolored puzzles are easier
 than analogous monochrome puzzles, because there are fewer "red
 herring" candidate solutions to eliminate.
 
+## Method overview
+
+A [solution approach by Khan](https://doi.org/10.1109/TG.2020.3036687)
+formulates the puzzle as an integer linear program (ILP). Unlike
+previous approaches, this ILP formulation does not refer directly to
+individual cells' colors, and doesn't proceed by coloring the cells
+one by one. In numerical experiments, this approach outperforms previous ILP-based approaches.
+
+The ILP is a constraint satisfaction problem with three types of
+constraints:
+
+- for each row (or column), enforcing that each colored block in this row (or column) begins once,
+- for each row (or column), enforcing that the blocks in this row (or column) occur in the
+  specified order and don't overlap, and
+- for each cell, ensuring that this cell is colored consistently with its row's clues and
+  its column's clues.
+
 ## Installation
 
-This package can be installed with the following command in Julia's REPL:
+Install the package with the following command in Julia's REPL:
 ```julia
 import Pkg; Pkg.add("NonogramSolver")
 ```
@@ -99,15 +116,13 @@ import Pkg; Pkg.add("NonogramSolver")
 ## Examples
 
 Suppose we wish to solve the above puzzles in Julia, and the package
-is installed. Enter the
-following commands in Julia's REPL, typing `Enter` at the end
-of each command:
+is already installed. Let's tackle the simpler puzzle above. First, load the package:
 
 ```julia
 using NonogramSolver
 ```
 
-Let's first tackle the simpler puzzle above. Store the row clues as a
+Store the row clues as a
 `Vector{Vector{Int}}`, and store the column clues as another
 `Vector{Vector{Int}}`:
 
