@@ -107,19 +107,19 @@ follows in Julia. For more details, refer to the API documentation.
    
    - displayed to the REPL/terminal, via: 
 
-		```julia
-		@show puzzleSolution`
-		```
+	 ```julia
+	 @show puzzleSolution`
+	 ```
 		
    - as a `String` containing the solution as a grid of colored-square
      emojis, with:
 	 
-		```julia
-		stringOutput = repr(puzzleSolution)
-		```
+	 ```julia
+	 stringOutput = repr(puzzleSolution)
+	 ```
  
    - as a `Matrix` of `0`s and `1`s, with:
    
-		```julia
-		matrixOutput = puzzleSolution.z
-		```
+     ```julia
+	 matrixOutput = puzzleSolution.z
+	 ```
