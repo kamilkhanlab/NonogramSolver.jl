@@ -86,14 +86,14 @@ follows in Julia. For more details, refer to the API documentation.
 3. Construct a `Puzzle` object to hold the puzzle's formulation:
 
 	```julia
-	puzzle = Puzzle(rowClues, colClues)
+	p = Puzzle(rowClues, colClues)
 	```
 
 4. Use JuMP to solve this puzzle as an integer linear program, using
    the freely available solver GLPK by default.
    
    ```julia
-   puzzleSolution = solve_puzzle(puzzle; verbosity=0)
+   solution = solve_puzzle(p; verbosity=0)
    ```
    
    You can customize the
@@ -107,17 +107,17 @@ follows in Julia. For more details, refer to the API documentation.
    - displayed to the REPL/terminal, via: 
 
 	 ```julia
-	 @show puzzleSolution
+	 @show solution
 	 ```
 		
    - as a `String` containing the printed solution, with:
 	 
 	 ```julia
-	 stringOutput = repr(puzzleSolution)
+	 stringOutput = repr(solution)
 	 ```
  
    - as a `Matrix` of `0`s and `1`s, with:
-   
-     ```julia
-	 matrixOutput = puzzleSolution.z
+
+	 ```julia
+	 matrixOutput = solution.z
 	 ```
